@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MacVG</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      color: #333;
+    }
+    header {
+      text-align: center;
+      padding: 1rem;
+      background: #222;
+      color: white;
+    }
+    .subtitle {
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+    .game-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .game-card {
+      width: 150px;
+      margin: 10px;
+      padding: 10px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .game-card:hover {
+      transform: scale(1.05);
+    }
+    .game-card img {
+      width: 100%;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MacVG</h1>
+    <p class="subtitle">Study Tools & Resources</p>
+  </header>
+
+  <main>
+    <div class="game-grid">
+      <div class="game-card" onclick="launchGame('https://ubg100.github.io/retrobowl/')">
+        <img src="https://via.placeholder.com/150x100?text=Retro+Bowl" alt="Retro Bowl" />
+        <p>Retro Bowl</p>
+      </div>
+      <div class="game-card" onclick="launchGame('https://ubg100.github.io/bitlife/')">
+        <img src="https://via.placeholder.com/150x100?text=BitLife" alt="BitLife" />
+        <p>BitLife</p>
+      </div>
+      <div class="game-card" onclick="launchGame('https://ubg100.github.io/geometrydash/')">
+        <img src="https://via.placeholder.com/150x100?text=Geometry+Dash" alt="Geometry Dash" />
+        <p>Geometry Dash</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function launchGame(url) {
+      window.open(url, '_blank');
