@@ -1,0 +1,14 @@
+{
+  "name": "uv-frontend",
+  "script": "dist/index.js",
+  "instances": "max",
+  "env": {
+    "NODE_ENV": "production",
+    "PORT": 3000
+  },
+  "log_file": "/app/logs/uv.log",
+  "out_file": "/app/logs/uv-out.log",
+  "error_file": "/app/logs/uv-error.log",
+  "merge_logs": true,
+  "time": true
+}

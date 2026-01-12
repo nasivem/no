@@ -1,0 +1,11 @@
+# docker-compose-grafana.yml
+services:
+  prometheus:
+    image: prom/prometheus
+    volumes: ['./prometheus.yml:/etc/prometheus/prometheus.yml']
+  
+  grafana:
+    image: grafana/grafana
+    ports: ["3001:3000"]
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin123

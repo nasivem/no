@@ -1,0 +1,196 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: doge-us-east
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: doge-us-east
+  template:
+    metadata:
+      labels:
+        app: doge-us-east
+    spec:
+      containers:
+      - name: doge-us-east
+        image: doge-unblocker:latest
+        ports:
+        - containerPort: 3000
+        - containerPort: 8080
+        env:
+        - name: REGION
+          value: "us-east"
+        - name: TOR_BRIDGES
+          value: "us-bridges.txt"
+        volumeMounts:
+        - name: proxies-us
+          mountPath: /app/proxies
+      volumes:
+      - name: proxies-us
+        hostPath:
+          path: /data/proxies-us
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: doge-eu-west
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: doge-eu-west
+  template:
+    metadata:
+      labels:
+        app: doge-eu-west
+    spec:
+      containers:
+      - name: doge-eu-west
+        image: doge-unblocker:latest
+        ports:
+        - containerPort: 3000
+        - containerPort: 8080
+        env:
+        - name: REGION
+          value: "eu-west"
+        volumeMounts:
+        - name: proxies-eu
+          mountPath: /app/proxies
+      volumes:
+      - name: proxies-eu
+        hostPath:
+          path: /data/proxies-eu
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: doge-ap-southeast
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: doge-ap-southeast
+  template:
+    metadata:
+      labels:
+        app: doge-ap-southeast
+    spec:
+      containers:
+      - name: doge-ap-southeast
+        image: doge-unblocker:latest
+        ports:
+        - containerPort: 3000
+        - containerPort: 8080
+        env:
+        - name: REGION
+          value: "ap-southeast"
+        volumeMounts:
+        - name: proxies-ap
+          mountPath: /app/proxies
+      volumes:
+      - name: proxies-ap
+        hostPath:
+          path: /data/proxies-ap
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: load-balancer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: load-balancer
+  template:
+    metadata:
+      labels:
+        app: load-balancer
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        volumeMounts:
+        - name: nginx-conf
+          mountPath: /etc/nginx/conf.d
+      volumes:
+      - name: nginx-conf
+        configMap:
+          name: nginx-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+data:
+  default.conf: |
+    upstream backend {
+      server doge-us-east:3000;
+      server doge-eu-west:3000;
+      server doge-ap-southeast:3000;
+    }
+    server {
+      listen 80;
+      location / {
+        proxy_pass http://backend;
+      }
+    }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: doge-us-east
+spec:
+  selector:
+    app: doge-us-east
+  ports:
+  - port: 3000
+    targetPort: 3000
+  - port: 8080
+    targetPort: 8080
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: doge-eu-west
+spec:
+  selector:
+    app: doge-eu-west
+  ports:
+  - port: 3000
+    targetPort: 3000
+  - port: 8080
+    targetPort: 8080
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: doge-ap-southeast
+spec:
+  selector:
+    app: doge-ap-southeast
+  ports:
+  - port: 3000
+    targetPort: 3000
+  - port: 8080
+    targetPort: 8080
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: load-balancer
+spec:
+  selector:
+    app: load-balancer
+  ports:
+  - port: 80
+    targetPort: 80
+  - port: 443
+    targetPort: 443
+  type: LoadBalancer
