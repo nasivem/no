@@ -1,0 +1,17 @@
+[
+  {
+    "type": "XSS",
+    "payload": "<script>alert('XSS')</script>",
+    "description": "Basic script injection to test XSS vulnerabilities."
+  },
+  {
+    "type": "SSRF",
+    "payload": "http://localhost/admin",
+    "description": "Targeting a localhost service to test SSRF vulnerabilities."
+  },
+  {
+    "type": "Open Redirect",
+    "payload": "http://evil.com/redirect?url=http://example.com",
+    "description": "Testing an open redirect vulnerability."
+  }
+]
