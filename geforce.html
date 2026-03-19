@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeForce NOW via DogeUnblocker</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2a 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(45deg, #764ba2, #667eea);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #feca57;
+        }
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .info-box {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+        .info-box h3 {
+            margin-bottom: 10px;
+            color: #feca57;
+        }
+        .info-box p {
+            color: #aaa;
+            margin-bottom: 8px;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2em;
+        }
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #764ba2, #667eea);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        .btn-secondary {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+        }
+        iframe {
+            width: 100%;
+            height: 85vh;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 10px;
+            background: #000;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            margin-top: 30px;
+            font-size: 0.9em;
+        }
+        .status {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(0,255,0,0.2);
+            border-radius: 20px;
+            color: #4ade80;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>🎮 GeForce NOW via DogeUnblocker</h1>
+        <p>Play AAA games in your browser with proxy bypass</p>
+    </header>
+
+    <div class="container">
+        <div class="info-box">
+            <h3>✅ How This Works</h3>
+            <p><strong>Proxy Bypass:</strong> Accessing GeForce NOW through DogeUnblocker's UV proxy</p>
+            <p><strong>No Installation:</strong> Play games directly in your browser</p>
+            <p><strong>Full Library:</strong> Access your entire GeForce NOW game library</p>
+            <p><strong>User-Agent Spoofing:</strong> Bypasses some proxy detection</p>
+            <div class="status">🟢 Connected via UV Proxy</div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="reloadFrame()">🔄 Reload</button>
+            <button class="btn" onclick="fullscreen()">⛶ Fullscreen</button>
+            <button class="btn btn-secondary" onclick="goBack()">← Back to Home</button>
+        </div>
+
+        <div class="loading">
+            Loading GeForce NOW... Please wait (can take 10-30 seconds)
+        </div>
+
+        <iframe id="geforceiframe" 
+                src="/uv/https://play.geforcenow.com"
+                allow="microphone; camera; fullscreen;"
+                sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-presentation">
+        </iframe>
+    </div>
+
+    <footer class="footer">
+        <p>DogeUnblocker GeForce NOW Integration • Supported on Chromebook & Desktop</p>
+        <p style="margin-top: 10px;">
+            If GeForce NOW doesn't load, try: <br>
+            1. Clear browser cache (Ctrl+Shift+Del)<br>
+            2. Use a different search engine first to warm up the proxy<br>
+            3. Check your network connection
+        </p>
+    </footer>
+
+    <script>
+        let loadingStartTime = Date.now();
+        
+        function reloadFrame() {
+            document.getElementById('geforceiframe').src = '/uv/https://play.geforcenow.com?t=' + Date.now();
+            console.log('Reloading GeForce NOW...');
+        }
+
+        function fullscreen() {
+            const iframe = document.getElementById('geforceiframe');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.webkitRequestFullscreen) {
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.mozRequestFullScreen) {
+                iframe.mozRequestFullScreen();
+            }
+        }
+
+        function goBack() {
+            window.location.href = '/';
+        }
+
+        // Monitor loading
+        window.addEventListener('load', function() {
+            const loadTime = Math.round((Date.now() - loadingStartTime) / 1000);
+            console.log('🎮 GeForce NOW loaded in ' + loadTime + ' seconds');
+        });
+
+        console.log('🎮 DogeUnblocker GeForce NOW Integration Initialized');
+    </script>
+</body>
+</html>

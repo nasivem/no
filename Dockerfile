@@ -1,37 +1,42 @@
 FROM node:20-alpine AS base
-RUN apk add --no-cache bash curl wget nginx supervisor tor privoxy dumb-init tzdata tini \
-    nmap ncat-openbsd socat iptables ip6tables bind-tools jq && \
-    npm i -g pm2 yarn @pm2/io
+RUN apk add --no-cache bash curl wget git nginx supervisor tor privoxy dumb-init tzdata tini \
+    nmap nmap-ncat socat iptables ip6tables bind-tools jq && \
+    npm i -g pm2 @pm2/io
 
 FROM base AS builder
 WORKDIR /app
-# Fix: Proper V4 repo + submodules
+# Clone upstream DogeUnblocker-v4 (no build step needed - pure Node.js app)
 RUN git clone --depth 1 https://github.com/DogeLeader/DogeUnblocker-v4.git . && \
-    yarn config set network-timeout 600000 && \
-    yarn install --frozen-lockfile --network-timeout 600000 && \
-    yarn build --network-timeout 600000
+    npm install --legacy-peer-deps && \
+    npm cache clean --force
 
 FROM base AS runtime  
 WORKDIR /app
 
-# Copy ONLY built artifacts (massive size fix)
-COPY --from=builder /app/dist ./dist
+# Copy built Node app from builder
+COPY --from=builder /app/index.js ./
 COPY --from=builder /app/node_modules ./node_modules  
 COPY --from=builder /app/package.json ./
-COPY --from=builder /app/server ./server
+COPY --from=builder /app/static ./static
 
-# Fix: Runtime configs + healthchecks
+# Copy local configs + tools (override/enhance upstream)
 COPY configs/ ./configs/
 COPY tools/ ./tools/
-COPY entrypoint-fixed.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh /app/tools/*
+COPY entrypoint.sh /entrypoint.sh
 
-# Pre-warm proxy lists + Tor fingerprints
-RUN mkdir -p /app/proxies /app/logs /app/certs && \
-    touch /app/proxies/{http,https,socks4,socks5}.live
+# Create required directories and default proxy list
+RUN mkdir -p /app/proxies /app/logs /app/certs /app/public && \
+    echo "Creating default proxy list..." && \
+    echo "127.0.0.1:3000" > /app/proxies/http.txt && \
+    echo "127.0.0.1:3128" >> /app/proxies/http.txt && \
+    chmod +x /entrypoint.sh /app/tools/* 2>/dev/null || true
+
+# Pre-initialize live proxy files
+RUN touch /app/proxies/{http,https,socks4,socks5}.live && \
+    echo "127.0.0.1:3000" > /app/proxies/http.live
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-  CMD curl -f http://localhost:3000/health || exit 1
+  CMD curl -f http://localhost:3000/health 2>/dev/null || exit 1
 
 EXPOSE 80 443 3000 8080 9050 3128 1080
 ENTRYPOINT ["/sbin/tini", "--", "/entrypoint.sh"]

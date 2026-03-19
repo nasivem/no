@@ -13,5 +13,50 @@
     "type": "Open Redirect",
     "payload": "http://evil.com/redirect?url=http://example.com",
     "description": "Testing an open redirect vulnerability."
+  },
+  {
+    "type": "search_engines",
+    "engines": [
+      {
+        "name": "Google",
+        "url": "https://www.google.com/search?q=%s",
+        "icon": "🔍"
+      },
+      {
+        "name": "Bing",
+        "url": "https://www.bing.com/search?q=%s",
+        "icon": "🔍"
+      },
+      {
+        "name": "DuckDuckGo",
+        "url": "https://duckduckgo.com/?q=%s",
+        "icon": "🔍"
+      },
+      {
+        "name": "Startpage",
+        "url": "https://www.startpage.com/sp/search?query=%s",
+        "icon": "🔍"
+      },
+      {
+        "name": "Brave Search",
+        "url": "https://search.brave.com/search?q=%s",
+        "icon": "🔍"
+      },
+      {
+        "name": "Ecosia",
+        "url": "https://www.ecosia.org/search?q=%s",
+        "icon": "🌱"
+      },
+      {
+        "name": "Qwant",
+        "url": "https://www.qwant.com/?q=%s",
+        "icon": "🔍"
+      },
+      {
+        "name": "Yandex",
+        "url": "https://yandex.com/search/?text=%s",
+        "icon": "🔍"
+      }
+    ]
   }
 ]
