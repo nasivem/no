@@ -7,9 +7,59 @@
 
 ---
 
-## 🎯 Quick-Access Buttons (Click to Launch)
+## 🛡️ School Filter Bypass (Authorized Pentest Training)
 
-**Note:** These work after you run `./deploy.sh` locally (on Chromebook or any machine).
+**School blocks nginx.org + external proxies?** No problem! Localhost access = 100% unfiltered.
+
+### ⚡ Quick School-Safe Setup (3 Options)
+
+#### Option 1: Codespace Local Preview (Fastest)
+```bash
+# 1. Start services
+docker compose up -d
+
+# 2. Codespace → Ports tab
+# Set port 80 visibility to: Private (not Public)
+
+# 3. Click "Open in Browser" 
+# → Access: http://localhost:80/rce/
+```
+
+#### Option 2: Direct Localhost Access
+```bash
+# Start services
+docker compose up -d
+
+# Test local access (UNFILTERED)
+curl http://localhost/rce/      # 🐶 RCE Lab
+curl http://localhost:1337/     # Direct access
+```
+
+#### Option 3: SSH Tunnel (Advanced)
+```bash
+# On local machine:
+ssh -L 8080:localhost:80 your-codespace.github.dev
+# Access: http://localhost:8080/rce/
+```
+
+### 🔒 Security Features
+- ✅ **Localhost-only ports**: `127.0.0.1` binding (no external access)
+- ✅ **VM2 sandboxing**: Isolated code execution
+- ✅ **No external dependencies**: All services run locally
+- ✅ **School filter bypass**: Localhost = unfiltered
+
+### 📍 Access Points (School-Safe)
+
+| Service | Local URL | Status |
+|---------|-----------|--------|
+| 🐶 **RCE Lab** | `http://localhost/rce/` | ✅ Unfiltered |
+| 🎮 Gaming Hub | `http://localhost/` | ✅ Unfiltered |
+| 🔗 UV Proxy | `http://localhost:3000/` | ✅ Unfiltered |
+| 📡 HTTP Proxy | `http://localhost:8081` | ✅ Unfiltered |
+
+---
+
+## 🎯 Quick-Access Buttons (Click to Launch)
 
 | Service | Direct Link | Description |
 |---------|-------------|-------------|
