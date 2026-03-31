@@ -1,5 +1,30 @@
 # 🚀 DogeUnblocker v5.0 - Quick Reference
 
+## 🛡️ School Filter Bypass (Priority)
+
+**School blocks nginx.org + proxies?** Use localhost access!
+
+### ⚡ School-Safe Setup (1min)
+```bash
+# Start services
+docker compose up -d
+
+# Codespace → Ports tab → Port 80 → Private
+# Access: http://localhost:80/rce/ (unfiltered!)
+```
+
+### 📍 Access Points (School-Safe)
+
+| URL | Purpose | Filter Status |
+|-----|---------|---------------|
+| `http://localhost:80/rce/` | 🐶 **RCE Lab** | ✅ Unfiltered |
+| `http://localhost:80/` | 🎮 Gaming Hub | ✅ Unfiltered |
+| `http://localhost:3000/` | 🔗 UV Proxy | ✅ Unfiltered |
+| `http://localhost:8081` | 📡 HTTP Proxy | ✅ Unfiltered |
+| `http://localhost:1337/` | 🐶 RCE Direct | ✅ Unfiltered |
+
+---
+
 ## ⚡ 60-Second Deployment
 
 ```bash

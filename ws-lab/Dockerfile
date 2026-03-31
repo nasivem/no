@@ -16,6 +16,6 @@ EXPOSE 1337
 
 # Healthcheck
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:8080/ || exit 1
+  CMD curl -f http://localhost:1337/ || exit 1
 
 CMD ["node", "server.cjs"]
