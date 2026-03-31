@@ -1,4 +1,4 @@
-# 🎉 DogeUnblocker v4.2 - Complete Fixes Deployed!
+# 🎉 DogeUnblocker v5.0 - Complete Fixes Deployed!
 
 ## ✅ Summary of All Changes
 
@@ -12,10 +12,15 @@
 | `README.md` | +100 | ChromeOS port forwarding guide | ✅ Enhanced |
 | `SETUP_VERIFICATION.md` | 400+ | Complete troubleshooting guide | ✅ New |
 | `CHROMEBOOK_DEPLOYMENT.md` | (existing) | Deployment instructions | ✅ Reference |
+| `ws-lab/server.cjs` | 450+ | WebSocket RCE Lab with VM2 sandboxing | ✅ New |
+| `ws-lab/package.json` | 15 | Dependencies for RCE lab | ✅ New |
+| `ws-lab/Dockerfile` | 10 | Container for RCE lab | ✅ New |
+| `nginx.conf` | 25 | WebSocket proxy configuration | ✅ Updated |
+| `nginx-upstream.conf` | 8 | Upstream definitions | ✅ Updated |
 
 ---
 
-## 🎯 4 Major Fixes Implemented
+## 🎯 5 Major Fixes Implemented
 
 ### 1️⃣ Port Forwarding Error (ChromeOS)
 **Status:** ✅ **FIXED**

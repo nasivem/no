@@ -1,6 +1,6 @@
-# 🚀 DogeUnblocker v4.2 — Gaming Hub + Proxy Arsenal
+# 🚀 DogeUnblocker v5.0 — Gaming Hub + Proxy Arsenal + RCE Lab
 
-**One-click access at school: 🎮 Gaming Hub • 🔗 UV Proxy • 🛡️ Health Status**
+**One-click access at school: 🎮 Gaming Hub • 🔗 UV Proxy • 🛡️ Health Status • 🔍 Search Lab**
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/yourrepo/doge-unblocker)](https://hub.docker.com/r/yourrepo/doge-unblocker)
 [![Status](https://img.shields.io/badge/status-production-green.svg)](https://dogeunblocker.org)
@@ -13,11 +13,13 @@
 
 | Service | Direct Link | Description |
 |---------|-------------|-------------|
+| 🌐 Official Website | [https://dogeunblocker.org](https://dogeunblocker.org) | Project homepage + docs |
 | 🎮 Gaming Dashboard | [http://localhost:8080](http://localhost:8080) | 50+ HTML5 games |
 | 🔗 UV Web Proxy | [http://localhost:3000/](http://localhost:3000/) | DogeUnblocker app + Bare/UV proxies |
 | 📡 HTTP Proxy | [http://localhost:8081](http://localhost:8081) | Privoxy HTTP proxy |
 | ✅ Health Status | [http://localhost:8080/health](http://localhost:8080/health) | Proxy uptime + status |
 | 🔐 Tor SOCKS | `127.0.0.1:9050` | Tor exit nodes (terminal only) |
+| 🔍 RCE Search Lab | [http://localhost/rce/](http://localhost/rce/) | WebSocket RCE lab with DuckDuckGo search |
 
 ---
 

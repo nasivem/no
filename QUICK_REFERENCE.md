@@ -1,4 +1,4 @@
-# 🚀 DogeUnblocker v4.2 - Quick Reference
+# 🚀 DogeUnblocker v5.0 - Quick Reference
 
 ## ⚡ 60-Second Deployment
 
@@ -18,6 +18,7 @@ sleep 5 && curl http://localhost:8080/health
 | `http://localhost:3000` | 🔗 UV Web Proxy |
 | `http://localhost:8081` | 📡 Privoxy HTTP Proxy |
 | `127.0.0.1:9050` | 🔐 Tor SOCKS5 |
+| `http://localhost:1337` | 🐕 WebSocket RCE Lab |
 
 ## 🎯 Share with Classmates
 

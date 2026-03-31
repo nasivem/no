@@ -1,4 +1,4 @@
-## ✅ DogeUnblocker v4.2 — Chromebook-Ready Deployment Summary
+## ✅ DogeUnblocker v5.0 — Chromebook-Ready Deployment Summary
 
 ### 🎯 What Was Completed
 

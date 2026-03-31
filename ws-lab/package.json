@@ -1,0 +1,16 @@
+{
+  "name": "doge-websocket-rce",
+  "version": "1.0.0",
+  "description": "Doge-themed WebSocket RCE Lab with VM2 Sandboxing",
+  "main": "server.cjs",
+  "scripts": {
+    "start": "node server.cjs"
+  },
+  "dependencies": {
+    "ws": "^8.16.0",
+    "vm2": "^3.9.19"
+  },
+  "keywords": ["websocket", "rce", "pentest", "doge", "vm2"],
+  "author": "DogeUnblocker",
+  "license": "MIT"
+}

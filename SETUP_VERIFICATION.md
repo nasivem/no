@@ -1,4 +1,4 @@
-# 🎉 DogeUnblocker v4.2 - Complete Setup Verification & Troubleshooting
+# 🎉 DogeUnblocker v5.0 - Complete Setup Verification & Troubleshooting
 
 ## ✅ What Was Fixed
 
@@ -17,6 +17,8 @@
   - ✅ GeForce NOW integration
   - ✅ Health status checker
   - ✅ Tor bridge access
+  - ✅ WebSocket RCE Lab with VM2 sandboxing
+  - ✅ DuckDuckGo search integration
 
 ### 3. **No Search Engine Support**
 - **Problem:** Can only search with one engine (Google)
